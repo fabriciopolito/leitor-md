@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Leitor Markdown
+GenericName=Visualizador de Markdown
+Comment=Leia arquivos Markdown já formatados
+Exec=leitor-md %F
+Icon=io.github.leitormd.LeitorMarkdown
+Terminal=false
+Categories=Office;Viewer;
+MimeType=text/markdown;text/x-markdown;
+Keywords=markdown;md;leitor;visualizador;viewer;
+StartupNotify=true
+StartupWMClass=leitor-md

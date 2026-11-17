@@ -1,0 +1,39 @@
+#!/bin/sh
+# AppRun do Leitor Markdown.
+# Ajusta o ambiente para usar as bibliotecas e dados embarcados no AppImage.
+# Os valores originais são guardados em LEITOR_MD_ORIG_<VAR> para que
+# programas abertos a partir do leitor (navegador etc.) recebam o ambiente
+# do sistema, e não o do AppImage.
+
+HERE="$(dirname "$(readlink -f "$0")")"
+
+for v in XDG_DATA_DIRS GSETTINGS_SCHEMA_DIR GDK_PIXBUF_MODULE_FILE GTK_PATH \
+         GTK_EXE_PREFIX GTK_DATA_PREFIX GIO_MODULE_DIR GTK_IM_MODULE_FILE LD_LIBRARY_PATH; do
+    eval "if [ -n \"\${$v+x}\" ]; then export LEITOR_MD_ORIG_$v=\"\$$v\"; fi"
+done
+export LEITOR_MD_APPDIR="$HERE"
+
+# Dados embarcados primeiro; dados do sistema (temas, fontes, ícones, traduções) em seguida.
+export XDG_DATA_DIRS="$HERE/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+# Esquemas GSettings compilados do GTK4 (seletor de arquivos etc.).
+export GSETTINGS_SCHEMA_DIR="$HERE/usr/share/glib-2.0/schemas"
+# Carregadores de imagem (gdk-pixbuf) embarcados: SVG, WebP, GIF…
+# O cache precisa de caminhos absolutos; como o ponto de montagem do AppImage
+# muda a cada execução, ele é gerado aqui num arquivo temporário.
+CACHE=""
+TEMPLATE="$HERE/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+if [ -f "$TEMPLATE" ]; then
+    CACHE="$(mktemp "${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}}/leitor-md-pixbuf.XXXXXX" 2>/dev/null)"
+    if [ -n "$CACHE" ] && sed "s|^\"\(libpixbufloader[^\"]*\)\"|\"$HERE/usr/lib/\1\"|" "$TEMPLATE" > "$CACHE"; then
+        export GDK_PIXBUF_MODULE_FILE="$CACHE"
+    else
+        CACHE=""
+    fi
+fi
+
+if [ -n "$CACHE" ]; then
+    trap 'rm -f "$CACHE"' EXIT HUP INT TERM
+    "$HERE/usr/bin/leitor-md" "$@"
+    exit $?
+fi
+exec "$HERE/usr/bin/leitor-md" "$@"

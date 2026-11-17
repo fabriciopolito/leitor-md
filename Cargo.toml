@@ -1,0 +1,17 @@
+[package]
+name = "leitor-md"
+version = "1.0.0"
+edition = "2021"
+description = "Leitor de Markdown leve e minimalista para Linux (GTK4)"
+license = "MIT"
+
+[dependencies]
+gtk = { package = "gtk4", version = "0.11", features = ["v4_14"] }
+pulldown-cmark = { version = "0.13", default-features = false }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

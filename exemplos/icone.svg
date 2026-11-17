@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d7be0"/>
+      <stop offset="1" stop-color="#2557b8"/>
+    </linearGradient>
+  </defs>
+  <!-- página -->
+  <path d="M56 20h104l48 48v156a16 16 0 0 1-16 16H56a16 16 0 0 1-16-16V36a16 16 0 0 1 16-16z" fill="#fbfbfd" stroke="#c9d1de" stroke-width="4"/>
+  <path d="M160 20v34a14 14 0 0 0 14 14h34" fill="#e3e8f1" stroke="#c9d1de" stroke-width="4" stroke-linejoin="round"/>
+  <!-- linhas de texto -->
+  <rect x="68" y="64" width="72" height="9" rx="4.5" fill="#c3cad7"/>
+  <rect x="68" y="84" width="104" height="9" rx="4.5" fill="#d5dbe5"/>
+  <!-- selo Markdown -->
+  <rect x="52" y="118" width="152" height="94" rx="16" fill="url(#bg)"/>
+  <path d="M76 190v-50h14l14 18 14-18h14v50h-14v-29l-14 18-14-18v29z" fill="#fff"/>
+  <path d="M158 140h16v26h14l-22 26-22-26h14z" fill="#fff"/>
+</svg>
