@@ -18,23 +18,23 @@ Visualizador de arquivos Markdown para Linux, **só de leitura**: abre um `.md` 
 
 **Janela inicial, sem documento aberto**
 
-![Janela inicial do Leitor Markdown sem documento aberto](md1.png)
+![Janela inicial do Leitor Markdown sem documento aberto](printscreens/md1.png)
 
 **Documento aberto, com o sumário navegável à esquerda**
 
-![README.md aberto no Leitor Markdown com o sumário à esquerda](md2.png)
+![README.md aberto no Leitor Markdown com o sumário à esquerda](printscreens/md2.png)
 
 **Busca no documento (`Ctrl+F`), com as ocorrências destacadas**
 
-![Barra de busca com o termo "Leitor" destacado no documento](md3.png)
+![Barra de busca com o termo "Leitor" destacado no documento](printscreens/md3.png)
 
 **Zoom reduzido (67 %)**
 
-![Documento exibido com zoom em 67 %](md4.png)
+![Documento exibido com zoom em 67 %](printscreens/md4.png)
 
 **Tema escuro**
 
-![Leitor Markdown no tema escuro](md5.png)
+![Leitor Markdown no tema escuro](printscreens/md5.png)
 
 ## Uso
 
